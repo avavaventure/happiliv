@@ -16,7 +16,7 @@ const poppins = Poppins({
 
 
 export const metadata: Metadata = {
-  title: 'ABOUT HappiLiv Hostels - Premium Hostel Accommodation',
+  title: 'HappiLiv Hostels - Premium Hostel Accommodation',
   description: 'Discover premium hostel accommodation at HappiLiv. Experience comfortable stays with great amenities and a vibrant community atmosphere.',
   icons: {
     icon: "/favicon.png",
