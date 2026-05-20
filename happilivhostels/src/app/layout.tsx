@@ -24,10 +24,6 @@ export const metadata: Metadata = {
   verification: {
     google: "fgAArWVRl_taRDu20qxGFUrVn4_YgNTvalgD9vg3Y6g",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
 };
 
 export default function RootLayout({
@@ -62,6 +58,7 @@ export default function RootLayout({
           <Footer />
           <FloatingButtons />
         </ClientProviders>
+
       </body>
     </html>
   );
