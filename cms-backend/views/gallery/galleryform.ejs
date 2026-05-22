@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Form</title>
+
+    <%- include("../partials/links") -%>
+</head>
+
+<body>
+
+    <div class="page-layout">
+        <!-- begin::Page Header -->
+        <%- include("../partials/header") -%>
+            <!-- end::Page Header -->
+
+            <!-- begin::Page Sidebar Menu -->
+            <%- include("../partials/sidebar") -%>
+                <!-- end:: Sidebar Menu -->
+
+                <main class="app-wrapper">
+
+                    <div class="container-fluid">
+
+                        <div class="app-page-head d-flex align-items-center justify-content-between">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb mb-0">
+                                    <li class="breadcrumb-item">
+                                        <a href="/">
+                                            <i class="fi fi-rr-home"></i> Home
+                                        </a>
+                                    </li>
+                                    <li class="icon-size"><i class="fa-solid fa-chevron-right"></i></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Gallery Form</li>
+                                </ol>
+                            </nav>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xxl-6 col-lg-12">
+                                <div class="row">
+                                    <% const currentErrors=(typeof errors !=='undefined' ) ? errors : {}; const
+                                        currentOld=(typeof old !=='undefined' ) ? old : {}; const currentTag=(typeof tag
+                                        !=='undefined' ) ? tag : null; let actionUrl="/api/gallery/image/create2" ; let
+                                        buttonText="Add" ; if (currentTag && currentTag.id) {
+                                        actionUrl="/api/gallery/image/update2/" + currentTag.id; buttonText="Update" ; }
+                                        %>
+
+                                        <form id="galleryForm" enctype="multipart/form-data" class="row">
+
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Category <span
+                                                        class="text-danger">*</span></label>
+                                                <select class="form-select" name="tagId" required>
+                                                    <option selected disabled value="">Choose Category </option>
+                                                    <% if (typeof tags !=='undefined' ) { %>
+                                                        <% tags.forEach((t)=> { %>
+                                                            <option value="<%= t.id %>" <%=(currentTag &&
+                                                                currentTag.tagId==t.id) ? 'selected' : '' %>>
+                                                                <%= t.name %>
+                                                            </option>
+                                                            <% }) %>
+                                                                <% } %>
+                                                </select>
+                                                <% if (currentErrors.tagId) { %>
+                                                    <small class="text-danger">
+                                                        <%= currentErrors.tagId %>
+                                                    </small>
+                                                    <% } %>
+                                            </div>
+
+                                            <div class="col-lg-6 mb-3">
+                                                <label class="form-label">Gallery Name <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" name="name"
+                                                    value="<%= (currentOld && currentOld.name) ? currentOld.name : '' %>"
+                                                    placeholder="Image Name" required>
+                                                <% if (currentErrors.name) { %>
+                                                    <small class="text-danger">
+                                                        <%= currentErrors.name %>
+                                                    </small>
+                                                    <% } %>
+                                            </div>
+
+                                            <div class="col-lg-6 mb-3">
+                                                <label class="form-label">Gallery Image <span
+                                                        class="text-danger">*</span></label>
+
+                                                <% if (currentTag && currentTag.image) { %>
+                                                    <div id="image-preview-wrapper" class="mb-2">
+                                                        <div class="position-relative d-inline-block">
+                                                            <% let displayImg=currentTag.image.includes('http') ?
+                                                                currentTag.image :
+                                                                `/uploads/gallery/${currentTag.image}`; %>
+
+                                                                <img src="<%= displayImg %>" class="rounded border"
+                                                                    style="width: 150px; height: 100px; object-fit: cover;">
+
+                                                                <button type="button"
+                                                                    class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1"
+                                                                    onclick="handleDeleteAction()"
+                                                                    title="Delete and Upload New">
+                                                                    <i class="fa-solid fa-trash-can"></i>
+                                                                </button>
+                                                        </div>
+                                                        <p class="text-muted small mt-1">Current image uploaded.</p>
+                                                    </div>
+                                                    <% } %>
+
+                                                        <div id="file-input-wrapper"
+                                                            style="<%= (currentTag && currentTag.image) ? 'display: none;' : '' %>">
+                                                            <input class="form-control" type="file" id="formFile"
+                                                                name="image">
+                                                            <input type="hidden" name="imageRemoved" id="imageRemoved"
+                                                                value="false">
+                                                            <p class="text-muted small mt-1">Select a new image file.
+                                                            </p>
+                                                        </div>
+
+                                                        <!-- Error will come here dynamically -->
+                                            </div>
+
+                                            <div class="col-lg-6 mb-3">
+                                                <label class="form-label">Status <span
+                                                        class="text-danger">*</span></label>
+                                                <select class="form-select" name="show" required>
+                                                    <option value="">Select status</option>
+                                                    <option value="VISIBLE" <%=(currentOld &&
+                                                        currentOld.show==='VISIBLE' ) ? 'selected' : '' %>>
+                                                        Active
+                                                    </option>
+                                                    <option value="HIDDEN" <%=(currentOld && currentOld.show==='HIDDEN'
+                                                        ) ? 'selected' : '' %>>
+                                                        Inactive
+                                                    </option>
+                                                </select>
+                                                <% if (currentErrors.show) { %>
+                                                    <small class="text-danger">
+                                                        <%= currentErrors.show %>
+                                                    </small>
+                                                    <% } %>
+                                            </div>
+
+                                            <div class="modal-footer mt-3 gap-3">
+                                                <a href="/gallery" class="btn btn-subtle-danger">Cancel</a>
+                                                <button type="submit" id="submitBtn" class="btn btn-subtle-success">
+                                                    <%= buttonText %>
+                                                </button>
+                                            </div>
+
+                                        </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </main>
+
+
+                <!-- begin::Footer -->
+                <%- include("../partials/footer") -%>
+                    <!-- end::Footer -->
+
+    </div>
+
+    <%- include("../partials/scripts") -%>
+        <script>
+            function handleDeleteAction() {
+                if (confirm("Are you sure you want to remove this image and upload a new one?")) {
+
+                    const previewWrapper = document.getElementById('image-preview-wrapper');
+                    if (previewWrapper) previewWrapper.style.display = 'none';
+
+                    const inputWrapper = document.getElementById('file-input-wrapper');
+                    if (inputWrapper) inputWrapper.style.display = 'block';
+
+                    const removedFlag = document.getElementById('imageRemoved');
+                    if (removedFlag) removedFlag.value = 'true';
+
+                    const fileInput = document.getElementById('formFile');
+                    if (fileInput) fileInput.setAttribute('required', 'required');
+                }
+            }
+        </script>
+
+        <script>
+            const form = document.getElementById('galleryForm');
+            const submitBtn = document.getElementById('submitBtn');
+
+            const originalBtnText = submitBtn.innerHTML;
+            let isSubmitting = false;
+
+            // remove all old errors
+            function clearErrors() {
+                form.querySelectorAll(".is-invalid").forEach(el => el.classList.remove("is-invalid"));
+                form.querySelectorAll(".dynamic-error").forEach(el => el.remove());
+            }
+
+            function showFieldError(fieldName, message) {
+                const el = form.querySelector(`[name="${fieldName}"]`);
+
+                if (!el) return;
+
+                el.classList.add("is-invalid");
+
+                const errorEl = document.createElement("small");
+                errorEl.className = "text-danger dynamic-error";
+                errorEl.innerText = message;
+
+                el.after(errorEl);
+            }
+
+            function resetButton() {
+                isSubmitting = false;
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                if (isSubmitting) return;
+
+                clearErrors();
+
+                isSubmitting = true;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = "Processing...";
+
+                try {
+                    const formData = new FormData(form);
+                    const url = "<%= actionUrl %>";
+
+                    const res = await fetch(url, {
+                        method: "POST",
+                        body: formData
+                    });
+
+                    const result = await res.json();
+
+                    // ❌ Error handling
+                    if (!res.ok || result.success === false) {
+                        resetButton();
+
+                        // multer single error
+                        if (result.field && result.message) {
+                            showFieldError(result.field, result.message);
+                            return;
+                        }
+
+                        // validation error object
+                        if (result.errors) {
+                            Object.entries(result.errors).forEach(([field, msg]) => {
+                                showFieldError(field, msg);
+                            });
+                            return;
+                        }
+
+                        alert(result.message || "Something went wrong!");
+                        return;
+                    }
+
+                    // ✅ Success
+                    alert("Saved successfully");
+                    window.location.href = "/gallery";
+
+                } catch (err) {
+                    console.error(err);
+                    resetButton();
+                    alert("Server error. Please try again.");
+                }
+            });
+        </script>
+
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <%- include("partials/links") -%>
+</head>
+
+<body>
+
+    <section>
+        <div class="page-layout">
+
+            <!-- begin::Page Header -->
+            <%- include("partials/header") -%>
+                <!-- end::Page Header -->
+
+                <!-- begin::Page Sidebar Menu -->
+                <%- include("partials/sidebar") -%>
+                    <!-- end:: Sidebar Menu -->
+
+                    <main class="app-wrapper">
+
+                        <div class="container-fluid">
+
+                            <div class="app-page-head d-flex align-items-center justify-content-between">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb mb-0">
+                                        <li class="breadcrumb-item">
+                                            <a href="/">
+                                                <i class="fi fi-rr-home"></i> Home
+                                            </a>
+                                        </li>
+                                        <li class="icon-size"><i class="fa-solid fa-chevron-right"></i></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                                    </ol>
+                                </nav>
+                            </div>
+
+                            <div class="row">
+                                <!-- Gallery -->
+                                <div class="col-xxl-2 col-lg-4 col-sm-6 col-12">
+                                    <div class="card">
+                                        <div
+                                            class="card-header d-flex align-items-center justify-content-between border-0 pb-0">
+                                            <div class="avatar avatar-sm text-bg-primary rounded-3">
+                                                <i class="fi fi-rr-objects-column"></i>
+                                            </div>
+                                            <a href="/gallery">
+                                                <span class="badge bg-success-subtle text-success"><i
+                                                        class="fa-solid fa-chevron-right"></i></span>
+                                            </a>
+                                        </div>
+                                        <div class="card-body">
+                                            <h6 class="mb-1">Gallery</h6>
+                                            <h4 class="mb-0">
+                                                <%= galleryCount> 0 ? galleryCount : 0%>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Gallery -->
+
+                                <!-- Blogs -->
+                                <div class="col-xxl-2 col-lg-4 col-sm-6 col-12">
+                                    <div class="card">
+                                        <div
+                                            class="card-header d-flex align-items-center justify-content-between border-0 pb-0">
+                                            <div class="avatar avatar-sm text-bg-info rounded-3">
+                                                <i class="fi fi-rr-comment-alt"></i>
+                                            </div>
+                                            <a href="/blog">
+                                                <span class="badge bg-success-subtle text-success"><i
+                                                        class="fa-solid fa-chevron-right"></i></span>
+                                            </a>
+                                        </div>
+                                        <div class="card-body">
+                                            <h6 class="mb-1">Blogs</h6>
+                                            <h4 class="mb-0">
+                                                <%= blogCount> 0 ? blogCount : 0 %>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Blogs -->
+                            </div>
+                        </div>
+                    </main>
+
+                    <!-- begin::Footer -->
+                    <%- include("partials/footer") -%>
+                        <!-- end::Footer -->
+
+        </div>
+    </section>
+
+
+
+    <%- include("partials/scripts") -%>
+
+</body>
+
+</html>
