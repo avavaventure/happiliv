@@ -6,7 +6,7 @@ import VissionMission from "./Components/VissionMission";
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About HappiLiv - Our Story & Mission',
+  title: 'About HappiLiv Hostel - Our Story & Mission',
   description: 'Learn about HappiLiv\'s mission to provide premium hostel accommodation. Discover our vision, values, and commitment to guest satisfaction.',
 };
 
