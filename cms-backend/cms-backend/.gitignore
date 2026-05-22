@@ -1,9 +1,0 @@
-node_modules
-# Keep environment variables out of version control
-.env
-# Keep generated/prisma out of version control
-/generated/prisma
-# Keep logs out of version control
-/logs
-#uploads
-/public/data/uploads
