@@ -253,6 +253,7 @@ export default function BoysHostelChristUniversity() {
               <div className="bg-[#FFFFFF2A] p-4 rounded-xl">
                 <p className="font-semibold mb-1">Email</p>
                 <p>happilivhostels@gmail.com</p>
+                <p>vibashappilivhostel@gmail.com</p>
               </div>
 
             </div>
