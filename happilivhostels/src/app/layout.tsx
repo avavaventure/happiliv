@@ -24,6 +24,25 @@ export const metadata: Metadata = {
   verification: {
     google: "fgAArWVRl_taRDu20qxGFUrVn4_YgNTvalgD9vg3Y6g",
   },
+
+  // ADD THESE BELOW WITHOUT REMOVING OLD LINES
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+    },
+  },
+
+  other: {
+    copyright: "HappiLiv Hostels - Premium Hostel Accommodation",
+    language: "ES",
+    Classification: "Business",
+  },
 };
 
 export default function RootLayout({
@@ -35,11 +54,34 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.variable} font-sans antialiased`}>
 
+        {/* ADD THIS SCRIPT ONLY — DO NOT REMOVE EXISTING SCRIPTS */}
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          strategy="afterInteractive"
+        >
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "HappiLiv Hostels - Premium Hostel Accommodation",
+            alternateName: "HappiLiv Hostels",
+            url: "https://www.happilivhostels.com/",
+            logo: "https://www.happilivhostels.com/assets/logo.svg",
+            sameAs: [
+              "https://www.happilivhostels.com/",
+              "https://www.instagram.com/HappiLivhostel/",
+              "https://www.facebook.com/people/HappiLiv-Hostel/100090702910485/",
+              "https://www.youtube.com/@HappiLivhostel",
+            ],
+          })}
+        </Script>
+
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-1H902SX3BB"
           strategy="afterInteractive"
         />
+        
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
