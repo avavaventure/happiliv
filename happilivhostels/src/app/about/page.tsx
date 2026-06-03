@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'Learn about HappiLiv\'s mission to provide premium hostel accommodation. Discover our vision, values, and commitment to guest satisfaction.',
 };
 
-export default function About() {
+export default  function About() {
     return (
         <>
             <Banner />
