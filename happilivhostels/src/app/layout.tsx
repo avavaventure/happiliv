@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
 
   other: {
-    copyright: "HappiLiv Hostels - Premium Hostel Accommodation",
+    copyright: "HappiLiv Hostels - Premium Hostels Accommodation",
     language: "ES",
     Classification: "Business",
   },
