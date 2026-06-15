@@ -6,9 +6,11 @@ import Image from "next/image";
 
 export const metadata: Metadata = {
   title:
-    "Girls Hostel in Kumbalagodu Bangalore | Safe & Affordable Student Accommodation",
+    "Girls Hostel Near Kumbalagodu | Affordable Girls Hostel Near Kumbalagodu",
   description:
-    "Looking for a girls hostel in Kumbalagodu Bangalore? HappiLiv Hostels offers safe, affordable, and fully furnished accommodation with food, WiFi, and modern amenities for students.",
+    "Looking for a Girls Hostel Near Kumbalagodu Bangalore? HappiLiv Hostels offers safe, affordable, and fully furnished accommodation with food, WiFi, and modern amenities for students.",
+  keyword:
+    "Girls hostel near Kumbalagodu, Affordable girls hostel near Kumbalagodu, Girls hostel with food near Kumbalagodu, Girls accommodation near Kumbalagodu Bangalore",
 };
 
 const BulletGrid = ({ items }: { items: string[] }) => (
