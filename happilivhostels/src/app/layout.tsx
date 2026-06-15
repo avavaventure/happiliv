@@ -95,7 +95,7 @@ export default function RootLayout({
             aggregateRating: {
               "@type": "AggregateRating",
               ratingValue: "4.9",
-              reviewCount: "149",
+              reviewCount: "150",
             },
           })}
         </Script>
