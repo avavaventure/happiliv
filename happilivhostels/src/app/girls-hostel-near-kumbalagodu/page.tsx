@@ -9,9 +9,7 @@ export const metadata: Metadata = {
     "Girls Hostel Near Kumbalagodu | Affordable Girls Hostel Near Kumbalagodu",
   description:
     "Looking for a Girls Hostel Near Kumbalagodu Bangalore? HappiLiv Hostels offers safe, affordable, and fully furnished accommodation with food, WiFi, and modern amenities for students.",
-  keyword:
-    "Girls hostel near Kumbalagodu, Affordable girls hostel near Kumbalagodu, Girls hostel with food near Kumbalagodu, Girls accommodation near Kumbalagodu Bangalore",
-};
+  };
 
 const BulletGrid = ({ items }: { items: string[] }) => (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-4 mt-6">
